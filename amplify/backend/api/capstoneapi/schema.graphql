@@ -1,5 +1,295 @@
-type Todo @model {
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type CapstoneData {
+  Occupation: String!
+  Probability: Float!
+  SOC: String!
+}
+
+type CapstoneDataConnection {
+  items: [CapstoneData]
+  nextToken: String
+}
+
+type CapstoneRisk {
+  Occupation: String!
+  Probability: Int!
+}
+
+type CapstoneRiskConnection {
+  items: [CapstoneRisk]
+  nextToken: String
+}
+
+type ModelRiskConnection {
+  items: [Risk]
+  nextToken: String
+}
+
+type Mutation {
+  createCapstoneData(input: CreateCapstoneDataInput!): CapstoneData
+  createCapstoneRisk(input: CreateCapstoneRiskInput!): CapstoneRisk
+  createRisk(condition: ModelRiskConditionInput, input: CreateRiskInput!): Risk
+  deleteCapstoneData(input: DeleteCapstoneDataInput!): CapstoneData
+  deleteCapstoneRisk(input: DeleteCapstoneRiskInput!): CapstoneRisk
+  deleteRisk(condition: ModelRiskConditionInput, input: DeleteRiskInput!): Risk
+  updateCapstoneData(input: UpdateCapstoneDataInput!): CapstoneData
+  updateCapstoneRisk(input: UpdateCapstoneRiskInput!): CapstoneRisk
+  updateRisk(condition: ModelRiskConditionInput, input: UpdateRiskInput!): Risk
+}
+
+type Query {
+  RiskByOccupation(Occupation: String, filter: ModelRiskFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelRiskConnection
+  getCapstoneData(Occupation: String!, SOC: String!): CapstoneData
+  getCapstoneRisk(Occupation: String!, Probability: Int!): CapstoneRisk
+  getRisk(id: ID!): Risk
+  listCapstoneData(filter: TableCapstoneDataFilterInput, limit: Int, nextToken: String): CapstoneDataConnection
+  listCapstoneRisks(filter: TableCapstoneRiskFilterInput, limit: Int, nextToken: String): CapstoneRiskConnection
+  listRisks(filter: ModelRiskFilterInput, limit: Int, nextToken: String): ModelRiskConnection
+}
+
+type Risk {
+  Occupation: String!
+  Probability: Int!
+  SOC: ID!
+  createdAt: AWSDateTime!
   id: ID!
-  name: String!
-  description: String
+  updatedAt: AWSDateTime!
+}
+
+type Subscription {
+  onCreateCapstoneData(Occupation: String, SOC: String): CapstoneData @aws_subscribe(mutations : ["createCapstoneData"])
+  onCreateCapstoneRisk(Occupation: String, Probability: Int): CapstoneRisk @aws_subscribe(mutations : ["createCapstoneRisk"])
+  onCreateRisk: Risk @aws_subscribe(mutations : ["createRisk"])
+  onDeleteCapstoneData(Occupation: String, SOC: String): CapstoneData @aws_subscribe(mutations : ["deleteCapstoneData"])
+  onDeleteCapstoneRisk(Occupation: String, Probability: Int): CapstoneRisk @aws_subscribe(mutations : ["deleteCapstoneRisk"])
+  onDeleteRisk: Risk @aws_subscribe(mutations : ["deleteRisk"])
+  onUpdateCapstoneData(Occupation: String, SOC: String): CapstoneData @aws_subscribe(mutations : ["updateCapstoneData"])
+  onUpdateCapstoneRisk(Occupation: String, Probability: Int): CapstoneRisk @aws_subscribe(mutations : ["updateCapstoneRisk"])
+  onUpdateRisk: Risk @aws_subscribe(mutations : ["updateRisk"])
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateCapstoneDataInput {
+  Occupation: String!
+  SOC: String!
+}
+
+input CreateCapstoneRiskInput {
+  Occupation: String!
+  Probability: Int!
+}
+
+input CreateRiskInput {
+  Occupation: String!
+  Probability: Int!
+  SOC: ID!
+  id: ID
+}
+
+input DeleteCapstoneDataInput {
+  Occupation: String!
+  SOC: String!
+}
+
+input DeleteCapstoneRiskInput {
+  Occupation: String!
+  Probability: Int!
+}
+
+input DeleteRiskInput {
+  id: ID
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelRiskConditionInput {
+  Occupation: ModelStringInput
+  Probability: ModelIntInput
+  SOC: ModelIDInput
+  and: [ModelRiskConditionInput]
+  not: ModelRiskConditionInput
+  or: [ModelRiskConditionInput]
+}
+
+input ModelRiskFilterInput {
+  Occupation: ModelStringInput
+  Probability: ModelIntInput
+  SOC: ModelIDInput
+  and: [ModelRiskFilterInput]
+  not: ModelRiskFilterInput
+  or: [ModelRiskFilterInput]
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableCapstoneDataFilterInput {
+  Occupation: TableStringFilterInput
+  SOC: TableStringFilterInput
+}
+
+input TableCapstoneRiskFilterInput {
+  Occupation: TableStringFilterInput
+  Probability: TableIntFilterInput
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateCapstoneDataInput {
+  Occupation: String!
+  SOC: String!
+}
+
+input UpdateCapstoneRiskInput {
+  Occupation: String!
+  Probability: Int!
+}
+
+input UpdateRiskInput {
+  Occupation: String
+  Probability: Int
+  SOC: ID
 }

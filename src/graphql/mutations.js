@@ -1,44 +1,98 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createCapstoneData = /* GraphQL */ `
+  mutation CreateCapstoneData($input: CreateCapstoneDataInput!) {
+    createCapstoneData(input: $input) {
+      Occupation
+      Probability
+      SOC
+    }
+  }
+`;
+export const createCapstoneRisk = /* GraphQL */ `
+  mutation CreateCapstoneRisk($input: CreateCapstoneRiskInput!) {
+    createCapstoneRisk(input: $input) {
+      Occupation
+      Probability
+    }
+  }
+`;
+export const createRisk = /* GraphQL */ `
+  mutation CreateRisk(
+    $condition: ModelRiskConditionInput
+    $input: CreateRiskInput!
   ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
+    createRisk(condition: $condition, input: $input) {
+      Occupation
+      Probability
+      SOC
       createdAt
+      id
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteCapstoneData = /* GraphQL */ `
+  mutation DeleteCapstoneData($input: DeleteCapstoneDataInput!) {
+    deleteCapstoneData(input: $input) {
+      Occupation
+      Probability
+      SOC
+    }
+  }
+`;
+export const deleteCapstoneRisk = /* GraphQL */ `
+  mutation DeleteCapstoneRisk($input: DeleteCapstoneRiskInput!) {
+    deleteCapstoneRisk(input: $input) {
+      Occupation
+      Probability
+    }
+  }
+`;
+export const deleteRisk = /* GraphQL */ `
+  mutation DeleteRisk(
+    $condition: ModelRiskConditionInput
+    $input: DeleteRiskInput!
   ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
+    deleteRisk(condition: $condition, input: $input) {
+      Occupation
+      Probability
+      SOC
       createdAt
+      id
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateCapstoneData = /* GraphQL */ `
+  mutation UpdateCapstoneData($input: UpdateCapstoneDataInput!) {
+    updateCapstoneData(input: $input) {
+      Occupation
+      Probability
+      SOC
+    }
+  }
+`;
+export const updateCapstoneRisk = /* GraphQL */ `
+  mutation UpdateCapstoneRisk($input: UpdateCapstoneRiskInput!) {
+    updateCapstoneRisk(input: $input) {
+      Occupation
+      Probability
+    }
+  }
+`;
+export const updateRisk = /* GraphQL */ `
+  mutation UpdateRisk(
+    $condition: ModelRiskConditionInput
+    $input: UpdateRiskInput!
   ) {
-    deleteTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
+    updateRisk(condition: $condition, input: $input) {
+      Occupation
+      Probability
+      SOC
       createdAt
+      id
       updatedAt
     }
   }

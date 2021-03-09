@@ -1,15 +1,18 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-capstone-dev-95452-authRole",
-      "UnauthRoleArn": "arn:aws:iam::831022084101:role/amplify-capstone-dev-95452-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::831022084101:role/amplify-capstone-dev-95452-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-capstone-dev-95452-deployment",
-      "UnauthRoleName": "amplify-capstone-dev-95452-unauthRole",
-      "StackName": "amplify-capstone-dev-95452",
-      "StackId": "arn:aws:cloudformation:us-east-2:831022084101:stack/amplify-capstone-dev-95452/67e5b480-80e7-11eb-a758-0a0a9a5b5dba",
-      "AmplifyAppId": "d3pyyo1j1socpr"
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-capstone-dev-95452-authRole",
+            "UnauthRoleArn": "arn:aws:iam::831022084101:role/amplify-capstone-dev-95452-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::831022084101:role/amplify-capstone-dev-95452-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-capstone-dev-95452-deployment",
+            "UnauthRoleName": "amplify-capstone-dev-95452-unauthRole",
+            "StackName": "amplify-capstone-dev-95452",
+            "StackId": "arn:aws:cloudformation:us-east-2:831022084101:stack/amplify-capstone-dev-95452/67e5b480-80e7-11eb-a758-0a0a9a5b5dba",
+            "AmplifyAppId": "d3pyyo1j1socpr"
+        },
+        "categories": {
+            "hosting": {}
+        }
     }
-  }
 }
