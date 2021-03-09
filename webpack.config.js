@@ -14,6 +14,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/
+            },
+            {
+                test: /\.m?js/,
+                resolve:{
+                    fullySpecified: false
+                }
             }
         ]
     },
