@@ -88,3 +88,54 @@ export const onUpdateRisk = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCapstone = /* GraphQL */ `
+  subscription OnCreateCapstone(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onCreateCapstone(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const onUpdateCapstone = /* GraphQL */ `
+  subscription OnUpdateCapstone(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onUpdateCapstone(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const onDeleteCapstone = /* GraphQL */ `
+  subscription OnDeleteCapstone(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onDeleteCapstone(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;

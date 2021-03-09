@@ -107,3 +107,28 @@ export const listRisks = /* GraphQL */ `
     }
   }
 `;
+export const getCapstone = /* GraphQL */ `
+  query GetCapstone($SOC: String!, $Occupation: String!) {
+    getCapstone(SOC: $SOC, Occupation: $Occupation) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const listCapstones = /* GraphQL */ `
+  query ListCapstones(
+    $filter: TableCapstoneFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCapstones(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        SOC
+        Occupation
+        Probability
+      }
+      nextToken
+    }
+  }
+`;

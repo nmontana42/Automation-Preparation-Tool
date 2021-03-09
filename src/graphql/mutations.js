@@ -97,3 +97,30 @@ export const updateRisk = /* GraphQL */ `
     }
   }
 `;
+export const createCapstone = /* GraphQL */ `
+  mutation CreateCapstone($input: CreateCapstoneInput!) {
+    createCapstone(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const updateCapstone = /* GraphQL */ `
+  mutation UpdateCapstone($input: UpdateCapstoneInput!) {
+    updateCapstone(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const deleteCapstone = /* GraphQL */ `
+  mutation DeleteCapstone($input: DeleteCapstoneInput!) {
+    deleteCapstone(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
