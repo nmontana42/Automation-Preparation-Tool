@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <head>
+        <title>
+            Senior Capstone - Risk of Automation
+        </title>
+        <script src="main.bundle.js"></script>
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+
+        <script type="text/javascript">
+            AWS.config.region = "us-east-2";
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            
+               IdentityPoolId: "us-east-2:cd8b6ea9-b444-4d7f-b88f-55080d63a0e5",
+            });
+            AWS.config.credentials.get(function(){
+            
+                // Credentials will be available when this function is called.
+                var accessKeyId = AWS.config.credentials.accessKeyId;
+                var secretAccessKey = AWS.config.credentials.secretAccessKey;
+            });
+            var dynambodb = new.AWS.DynamoDB();
+            function queryData(){
+                document.getElementById('textarea').innerHTML += "Querying Data " +"\n";
+            };
+        </script>
+    </head>
+
+
+    <body>
+        <link rel = "stylesheet" href="index.css">
+        <h1>Senior Capstone - Risk of Automation</h1>
+        
+        <div class = "center">
+            <h1>Search Job</h1>
+            
+            
+            <input autofocus id = "queryData" placeholder= "Type Here" type="button" value = "Query" onclick="queryData();">
+
+            
+        </div>
+        <br><br>
+        <textarea readonly id= "textarea" style="width:400px; height:800px"></textarea>
+    </body>
+</html>
