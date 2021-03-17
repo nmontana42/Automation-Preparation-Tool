@@ -17,20 +17,39 @@ async function createNewTodo() {
 
 async function getData() {
     API.graphql(graphqlOperation(listCapstones)).then((evt) => {
-        evt.data.listCapstones.items.map((item, i) => {
+        evt.data.listCapstones.items.map((item) => {
             QueryResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
         })
     })
 }
+
+async function test() {
+    const TableCapstoneFilterInput = {
+        Occupation: {
+            contains: "Engineer"
+        }
+    };
+    return await API.graphql(graphqlOperation(listCapstones, {filter: TableCapstoneFilterInput}));
+};
   
   
 const MutationButton = document.getElementById("MutationEventButton");
 const MutationResult = document.getElementById("MutationResult");
 const QueryResult = document.getElementById("QueryResult");
+const TestButton = document.getElementById("TestButton");
+const TestResult = document.getElementById("SubscriptionResult");
   
 MutationButton.addEventListener("click", (evt) => {
     createNewTodo().then((evt) => {
       MutationResult.innerHTML += `<p>${evt.data.createCapstone.Occupation} - ${evt.data.createCapstone.Probability}</p>`;
     });
 });
+
+TestButton.addEventListener("click", (evt) => {
+    test().then((evt) => {
+        evt.data.listCapstones.items.map((item) => {
+            TestResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
+        })
+    })
+})
 getData();
