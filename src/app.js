@@ -1,9 +1,11 @@
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsmobile from "./aws-exports";
-import { createCapstone } from "./graphql/mutations";
-import { listCapstones } from "./graphql/queries";
-
+import { createJobRisk } from "./graphql/mutations";
+import { listJobRisks } from "./graphql/queries";
+import './scss/index.scss';
 Amplify.configure(awsmobile);
+
+
 
 async function createNewTodo() {
     const item = {
@@ -12,44 +14,55 @@ async function createNewTodo() {
       Probability: .014
     };
   
-    return await API.graphql(graphqlOperation(createCapstone, { input: item }));
+    return await API.graphql(graphqlOperation(createJobRisk, { input: item }));
 }
 
-async function getData() {
-    API.graphql(graphqlOperation(listCapstones)).then((evt) => {
-        evt.data.listCapstones.items.map((item) => {
-            QueryResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
-        })
-    })
-}
 
 async function test() {
-    const TableCapstoneFilterInput = {
+    const input = document.querySelector('#user').value;
+
+    const TableJobRiskFilterInput = {
         Occupation: {
-            contains: "Engineer"
+            contains: input
         }
     };
-    return await API.graphql(graphqlOperation(listCapstones, {filter: TableCapstoneFilterInput}));
+    return await API.graphql(graphqlOperation(listJobRisks, {filter: TableJobRiskFilterInput}));
 };
-  
+
+
   
 const MutationButton = document.getElementById("MutationEventButton");
 const MutationResult = document.getElementById("MutationResult");
-const QueryResult = document.getElementById("QueryResult");
+
 const TestButton = document.getElementById("TestButton");
 const TestResult = document.getElementById("SubscriptionResult");
+
+
+const UserResult = document.getElementById("UserResult");
+
   
 MutationButton.addEventListener("click", (evt) => {
     createNewTodo().then((evt) => {
-      MutationResult.innerHTML += `<p>${evt.data.createCapstone.Occupation} - ${evt.data.createCapstone.Probability}</p>`;
+      MutationResult.innerHTML += `<p>${evt.data.createJobRisk.Occupation} - ${evt.data.createJobRisk.Probability}</p>`;
     });
 });
 
 TestButton.addEventListener("click", (evt) => {
     test().then((evt) => {
-        evt.data.listCapstones.items.map((item) => {
+        evt.data.listJobRisks.items.map((item, i) => {
             TestResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
         })
     })
 })
-getData();
+
+document.addEventListener('DOMContentLoaded', function(){
+    document.querySelector('form').onsubmit = (evt) => {
+        test().then((evt) => {
+            evt.data.listJobRisks.items.map((item => {
+                UserResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
+            }))
+        })
+        return false;
+    };
+})
+

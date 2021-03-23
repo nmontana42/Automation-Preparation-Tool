@@ -124,3 +124,30 @@ export const deleteCapstone = /* GraphQL */ `
     }
   }
 `;
+export const createJobRisk = /* GraphQL */ `
+  mutation CreateJobRisk($input: CreateJobRiskInput!) {
+    createJobRisk(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const updateJobRisk = /* GraphQL */ `
+  mutation UpdateJobRisk($input: UpdateJobRiskInput!) {
+    updateJobRisk(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const deleteJobRisk = /* GraphQL */ `
+  mutation DeleteJobRisk($input: DeleteJobRiskInput!) {
+    deleteJobRisk(input: $input) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;

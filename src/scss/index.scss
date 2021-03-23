@@ -1,0 +1,79 @@
+$color: rgb(31, 31, 179);
+
+
+
+html, body { 
+    font-family: "Amazon Ember", "Helvetica", "sans-serif"; 
+    margin: 0; 
+}
+a { 
+    color: $color; 
+}
+h1 { 
+    font-weight: 300; 
+}
+hr { 
+    height: 1px; 
+    background: lightgray; 
+    border: none; 
+}
+.app { 
+    width: 100%; 
+}
+.app-header { 
+    color: white; 
+    text-align: center; 
+    background: 
+    linear-gradient(30deg, $color 55%, $color); 
+    width: 100%; 
+    margin: 0 0 1em 0; 
+    padding: .5em 0 .5em 0; 
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+.app-header button {
+    background-color: whitesmoke;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 1em; 
+    border: black; 
+}
+.app-buttons {
+    display: flex;
+}
+.button-column {
+    flex: 1;
+}
+.app-column:first-child {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.app-logo { 
+    width: 126px; 
+    margin: 0 auto; 
+}
+.app-body { 
+    display: flex;
+}
+.app-body button { 
+    background-color: $color; 
+    font-size: 14px; 
+    color: white; 
+    text-transform: uppercase; 
+    padding: 1em; 
+    border: none; 
+}
+.app-body button:hover { 
+    opacity: 0.8; 
+}
+.app-column {
+    flex: 1;
+    border: 2px solid black;
+    padding-right: 10px;
+}
+.app-column:first-child {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.app-column div {
+    text-align: center;
+}

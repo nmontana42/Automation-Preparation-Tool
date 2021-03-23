@@ -132,3 +132,28 @@ export const listCapstones = /* GraphQL */ `
     }
   }
 `;
+export const getJobRisk = /* GraphQL */ `
+  query GetJobRisk($SOC: String!, $Occupation: String!) {
+    getJobRisk(SOC: $SOC, Occupation: $Occupation) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const listJobRisks = /* GraphQL */ `
+  query ListJobRisks(
+    $filter: TableJobRiskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listJobRisks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        SOC
+        Occupation
+        Probability
+      }
+      nextToken
+    }
+  }
+`;

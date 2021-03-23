@@ -139,3 +139,54 @@ export const onDeleteCapstone = /* GraphQL */ `
     }
   }
 `;
+export const onCreateJobRisk = /* GraphQL */ `
+  subscription OnCreateJobRisk(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onCreateJobRisk(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const onUpdateJobRisk = /* GraphQL */ `
+  subscription OnUpdateJobRisk(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onUpdateJobRisk(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;
+export const onDeleteJobRisk = /* GraphQL */ `
+  subscription OnDeleteJobRisk(
+    $SOC: String
+    $Occupation: String
+    $Probability: Float
+  ) {
+    onDeleteJobRisk(
+      SOC: $SOC
+      Occupation: $Occupation
+      Probability: $Probability
+    ) {
+      SOC
+      Occupation
+      Probability
+    }
+  }
+`;

@@ -1,37 +1,19 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
 const path = require('path');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
 
-module.exports = {
-    mode: 'development',
-    entry: './src/app.js',
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/
-            },
-            {
-                test: /\.m?js/,
-                resolve:{
-                    fullySpecified: false
-                }
-            }
-        ]
-    },
-    devServer: {
-        contentBase: './dist',
-        overlay: true,
-        hot: true
-    },
-    plugins: [
-        new CopyWebpackPlugin({
-            patterns: ['./dist/index.html']
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ]
-};
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: false,
+  devServer: {
+    contentBase: path.join(__dirname, './dist/'),
+    hot: true,
+    open: true,
+    watchContentBase: true,
+    port: 3000,
+    overlay: {
+      warnings: true,
+      errors: true 
+    }
+  }
+});
