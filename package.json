@@ -28,6 +28,6 @@
   },
   "scripts": {
     "start": "webpack && webpack serve",
-    "build": "webpack && webpack serve --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js"
   }
 }
