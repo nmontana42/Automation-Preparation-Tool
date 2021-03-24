@@ -63,11 +63,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                './src/index.html'
-            ]
-        }),
         
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
