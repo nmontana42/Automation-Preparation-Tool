@@ -60,9 +60,6 @@ module.exports = {
         hot: true
     },
     plugins: [
-        new CleanWebpackPlugin({
-            dry: true
-          }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
