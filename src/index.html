@@ -2,68 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amplify Framework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <div class="app">
-      <div class="app-header">
-        <div class="app-logo">
-          <img
-            src="https://aws-amplify.github.io/images/Logos/Amplify-Logo-White.svg"
-            alt="AWS Amplify"
-          />
-        </div>
-        <h1>Senior Capstone - Fullstack Web Application</h1><br>
-        <div class = "app-buttons">
-          <div class = "button-column">
-            <div class = "container">
-              <button href = "testing.html" id = "Testing">Testing Page</button>
-            </div>
-          
-          </div>
-          <div class = "button-column">
-            <div class = "container">
-              <button id = "home">Home</button>
-            </div>
-          </div>
-          <div class = "button-column">
-            <div class = "container">
-              <button id = "User">User Page</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="app-body">
-        
-        <div class = "app-column">
-          <div class = "container">
-            <h1>Add Data</h1>
-            <button id="MutationEventButton">Add data</button>
-            <div id="MutationResult"></div>
-          </div>
-        </div>
 
-        <div class = "app-column">
-          <div class = "container">
-            <h1>Test Queries</h1>
-            <button id = "TestButton">Test</button>
-            <div id="SubscriptionResult"></div>
-          </div>
-        </div>
-        <div class = "app-column">
-          <div class = "container">
-            <h1>Test Input</h1>
-            <form>
-              <input id = "user" placeholder="Occupation" type = "text">
-              <input type = "submit">
-            </form>
-            <div id = "UserResult"></div>
-          </div>
-          <br>
+    <!--** Header **-->
+    <header class = "header header--fixed header--transparent">
+      <div class = "container d-flex justify-content-between align-items-center">
+        <div class = "header__brand align-items-center">
+          <h1><a href = "index.html" class = "active">Home</a></h1>
+          <h1><a href = "testing.html">Developer Testing</a></h1>
         </div>
       </div>
-    </div>
+      
+    </header>
+
+    <!-- ** Intro ** -->
+    <section class="intro">
+      <div class="intro__overlay"></div>
+        <div class="intro__body">
+        <h1>Risk of Automation</h1>
+        <h2><a href = "user.html">Click to find your job's risk</a></h2>
+      </div>
+    </section>
     <script src="main.bundle.js"></script>
   </body>
 </html>
