@@ -19,6 +19,19 @@
   }
 
   &__brand {
+      .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+      }
+      .box-1{
+          order: 1
+      }
+      .box-2{
+          order: 2;
+      }
+      
     a {
         text-align: center;
         color: $text-color;
