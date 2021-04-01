@@ -61,12 +61,15 @@ module.exports = {
         hot: true
     },
     plugins: [
+        new CleanWebpackPlugin({
+          dry: true
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
         new CopyWebpackPlugin({
             patterns: ['./src/index.html',
-          {from: './src/assets', to: 'assets'}]
+          {from: './src/assets', to: 'assets'},]
         }),
         
         new webpack.HotModuleReplacementPlugin(),

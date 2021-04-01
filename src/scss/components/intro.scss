@@ -19,7 +19,7 @@
       position: relative;
       z-index: 1;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
       height: inherit;
@@ -47,13 +47,13 @@
     }
 
     &__userbody{
+        display: flex;
+        flex-direction: row;
+        background-image: none;
         position: relative;
         height: inherit;
         margin-top: 10%;
         .container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             margin-bottom: 50px;
         }
         .box-1{
@@ -63,7 +63,7 @@
         }
         .box-2{
             border: solid white;
-            flex: 2;
+            flex: 1;
         }
     }
 
