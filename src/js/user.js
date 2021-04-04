@@ -26,7 +26,7 @@ class Analyze{
     }
 }
 
-
+//Single page
 document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('form').onsubmit = () => {
@@ -38,13 +38,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if(result_count == 1){
                 evt.data.listJobRisks.items.map((item) => {
-
+                    document.getElementById("One_Job").style.display = "block";
+                    document.getElementById("menu").style.display = "none";
                     OneResult.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
                     OneResult.innerHTML += `<p>${evt.data.listJobRisks.item.length}</p>`
     
                 });
             }
             else if(result_count > 1){
+                document.getElementById("Multiple_Jobs").style.display = "block";
+                document.getElementById("menu").style.display = "none";
                 evt.data.listJobRisks.items.map((item) => {
                     multipleResults.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
                 });
