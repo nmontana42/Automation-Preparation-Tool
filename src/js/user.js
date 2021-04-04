@@ -4,6 +4,12 @@ import { listJobRisks } from "../graphql/queries";
 import '../scss/user.scss';
 Amplify.configure(awsmobile);
 
+
+const queryResult = document.getElementById('Results');
+const OneResult = document.getElementById('One_Result');
+const multipleResults = document.getElementById('Multiple_Results');
+
+
 //Analyze class queries based off form input
 class Analyze{
     constructor(job){
@@ -19,7 +25,7 @@ class Analyze{
         
     }
 }
-const queryResult = document.getElementById('Results');
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -27,14 +33,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const job = document.querySelector('#job').value;
         var Probability = new Analyze(job);
         Probability.risk().then((evt => {
-            evt.data.listJobRisks.items.map((item) => {
-                queryResult.innerHTML += `<p>${item.Occupation} - ${item.Probability}</p>`;
-            });
+            
+            var result_count = evt.data.listJobRisks.items.length;
+
+            if(result_count == 1){
+                evt.data.listJobRisks.items.map((item) => {
+
+                    OneResult.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
+                    OneResult.innerHTML += `<p>${evt.data.listJobRisks.item.length}</p>`
+    
+                });
+            }
+            else if(result_count > 1){
+                evt.data.listJobRisks.items.map((item) => {
+                    multipleResults.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
+                });
+            }
+            else {
+                queryResult.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
+            }
         }))
         return false;
     }
 });
-
-
-
-
