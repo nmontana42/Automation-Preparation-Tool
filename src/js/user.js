@@ -8,7 +8,8 @@ Amplify.configure(awsmobile);
 const queryResult = document.getElementById('Results');
 const OneResult = document.getElementById('One_Result');
 const multipleResults = document.getElementById('Multiple_Results');
-
+const CountDiv = document.getElementById('Count');
+const Suggestions = document.getElementById('suggestions');
 
 //Analyze class queries based off form input
 class Analyze{
@@ -26,11 +27,27 @@ class Analyze{
     }
 }
 
+//Takes the probabilities from the user's selected job and respods with suggestions
+class Resources{
+    constructor(percentage){
+        this.percentage = ((percentage * 100).toFixed(1) >= 50) ? 'high' : 'low';
+    };
+    respond(){
+        if (this.percentage == 'high'){
+            Suggestions.innerHTML += `<p>The automation probability of this job is over 50% </p>`;
+        }
+        else{
+            Suggestions.innerHTML += `<p>The automation probability of this job is below 50% </p>`;
+        }
+    }
+}
+
 //Single page
 document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('form').onsubmit = () => {
-        const job = document.querySelector('#job').value;
+        const jobstring = document.querySelector('#job').value;
+        const job = jobstring.charAt(0).toUpperCase() + jobstring.slice(1);
         var Probability = new Analyze(job);
         Probability.risk().then((evt => {
             
@@ -41,13 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById("One_Job").style.display = "block";
                     document.getElementById("menu").style.display = "none";
                     OneResult.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
-                    OneResult.innerHTML += `<p>${evt.data.listJobRisks.item.length}</p>`
+                    var Response = new Resources(item.Probability);
+                    Response.respond();
+
     
                 });
             }
             else if(result_count > 1){
                 document.getElementById("Multiple_Jobs").style.display = "block";
                 document.getElementById("menu").style.display = "none";
+                CountDiv.innerHTML += `<p>Number of Results: ${result_count}</p>`;
                 evt.data.listJobRisks.items.map((item) => {
                     multipleResults.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
                 });
