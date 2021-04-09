@@ -29,6 +29,7 @@
         }
         .box-1{
             flex: 1;
+            align-items: center;
             border: white;
             border-style: outset;
             border-radius: 30px;
@@ -42,15 +43,39 @@
                 color: white;
                 text-shadow: 2px 2px black;
             }
-            button{
-                display: inline-block;
-                border: 0.1em solid white;
-                margin-left: 50px;
-                border-radius: 0.12em;
-                box-sizing: border-box;
-                font-weight: 300;
-                text-align: center;
-                transition: all 0.2s;
+            div{
+                margin-left: 20%;
+                h1{
+                    size: 10px;
+                    color: grey;
+                    text-shadow: 2px 2px black;
+                }
+                button{
+                    height: 10%;
+                    width: 75%;
+                    display:inline-block;
+                    padding:0.35em 1.2em;
+                    border:0.1em solid #FFFFFF;
+                    margin:0 0.3em 0.3em 0;
+                    border-radius:0.12em;
+                    box-sizing: border-box;
+                    text-decoration:none;
+                    font-weight:300;
+                    text-align:center;
+                    transition: all 0.2s;
+                
+                }
+                button:hover{
+                    color:#000000;
+                    background-color:#FFFFFF;
+                }
+                @media all and (max-width:30em){
+                    button{
+                    display:block;
+                    margin:0.4em auto;
+                    }
+                }
+                
             }
             form{
                 height: 10px;

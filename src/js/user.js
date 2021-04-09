@@ -50,13 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const job = jobstring.charAt(0).toUpperCase() + jobstring.slice(1);
         var Probability = new Analyze(job);
         Probability.risk().then((evt => {
-            
             var result_count = evt.data.listJobRisks.items.length;
-
-            if(result_count == 1){
+            if(result_count == 1){ //User input results in only one occupation
                 evt.data.listJobRisks.items.map((item) => {
-                    document.getElementById("One_Job").style.display = "block";
                     document.getElementById("menu").style.display = "none";
+                    document.getElementById("One_Job").style.display = "block"; //show single job display
                     OneResult.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
                     var Response = new Resources(item.Probability);
                     Response.respond();
@@ -64,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 });
             }
-            else if(result_count > 1){
-                document.getElementById("Multiple_Jobs").style.display = "block";
+            else if(result_count > 1){ //User input results in more than one occupation
                 document.getElementById("menu").style.display = "none";
+                document.getElementById("Multiple_Jobs").style.display = "block"; //show multiple job display
                 CountDiv.innerHTML += `<p>Number of Results: ${result_count}</p>`;
                 evt.data.listJobRisks.items.map((item) => {
                     multipleResults.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;

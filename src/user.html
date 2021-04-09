@@ -22,8 +22,12 @@
             <div class = "container">
               <div id = "menu" class = "box-1">
                 <h1>
-                  Occupation
+                  Selct an Industry
                 </h1>
+                <div id = industries>
+                  <button id = "Ind-Button" data-section = "medicine"><h1>Medicine</h1></button><br>
+                  <button id = "Ind-Button" data-section="education"><h1>Education</h1></button><br>
+                </div>
                 <form type = "submit">
                   <input id = "job" type = "text" placeholder="Job Title"><input type = "submit">
                 </form><br><br>
@@ -31,11 +35,13 @@
               </div>
               <div id = "One_Job" class = "box-2">
                 <h1>Results</h1>
+                <div class = "loader"></div>
                 <div id = "One_Result"></div>
                 <div id = "suggestions"></div>
               </div>
               <div id = "Multiple_Jobs" class = "box-3">
                 <h1>Results</h1>
+                <div class = "loader"></div>
                 <div id = "Count"></div><br>
                 <div id = "Multiple_Results"></div>
               </div>

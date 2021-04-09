@@ -74,11 +74,6 @@ module.exports = {
         
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
-            title: 'Testing',
-            filename: 'testing.html',
-            template: './src/testing.html',
-        }),
-        new htmlWebpackPlugin({
             title: 'User',
             filename: 'user.html',
             template: './src/user.html',
