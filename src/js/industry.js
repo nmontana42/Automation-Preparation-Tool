@@ -4,31 +4,60 @@ import { listJobRisks } from "../graphql/queries";
 
 Amplify.configure(awsmobile);
 
-const education = document.getElementById('education');
-const medicine = document.getElementById('medicine');
+var industry_data = {
+    "medicine" : ["health", "doctor", "phsyician"], 
+    "education" : ["teacher"],
+    "IT": ["computer", "software"],
+}
 
-
+const Results = document.getElementById("Multiple_Results");
 class Industry {
     constructor(selection){
         this.selection = selection;
     }
     query(){
         if(this.selection == 'medicine'){
-            const TableJobRiskFilterInput = {
+            var TableJobRiskFilterInput = {
                 Occupation: {
-                    contains: 'Medical'
+                    contains: 'Health'
                 }
             };
+            return API.graphql(graphqlOperation(listJobRisks, {filter: TableJobRiskFilterInput}));
         }
-        else if(this.selection == 'education'){
-            const TableJobRiskFilterInput = {
+        if(this.selection == 'education'){
+            var TableJobRiskFilterInput = {
                 Occupation: {
                     contains: 'Teacher'
                 }
-            };
+            }
+            return API.graphql(graphqlOperation(listJobRisks, {filter: TableJobRiskFilterInput}));
         }
-
-        return API.graphql(graphqlOperation(listJobRisks, {filter: TableJobRiskFilterInput}));
+        
+    }
+    query2(){
+        for(var industry in industry_data.selection){
+            
+        }
     }
 
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('#Ind-Button').forEach(button =>{
+        button.onclick = function() {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("Multiple_Jobs").style.display = "block";
+            const Industry_Results = new Industry('#Ind-Button');
+            Industry_Results.query().then((evt => {
+                evt.data.listJobRisks.items.map((item) => {
+                    Results.innerHTML += `<p>${item.Occupation} - ${(item.Probability * 100).toFixed(1)}%</p>`;
+                })
+            }))
+
+
+        }
+    })
+})
+

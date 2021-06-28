@@ -10,7 +10,8 @@
     <header class = "header header--fixed header--transparent">
       <div class = "container d-flex justify-content-between align-items-center">
         <div class = "header__brand align-items-center">
-          <h1><a href = "index.html" class = "active">Home</a></h1>
+          <div class = "box-1"><h1><a href = "index.html" class = "active">Home</a></h1></div>
+          <div class = "box-2"><h1><a href = "login.html" class = "active">Login</a></h1></div>
         </div>
       </div>
     </header>
@@ -19,33 +20,46 @@
     <section class = "userintro"> 
       <div class = "userintro__overlay">
         <div class = "userintro__userbody">
-            <div class = "container">
-              <div id = "menu" class = "box-1">
-                <h1>
-                  Selct an Industry
-                </h1>
-                <div id = industries>
-                  <button id = "Ind-Button" data-section = "medicine"><h1>Medicine</h1></button><br>
-                  <button id = "Ind-Button" data-section="education"><h1>Education</h1></button><br>
-                </div>
-                <form type = "submit">
-                  <input id = "job" type = "text" placeholder="Job Title"><input type = "submit">
-                </form><br><br>
-                <div id = "Results"></div>
-              </div>
-              <div id = "One_Job" class = "box-2">
-                <h1>Results</h1>
-                <div class = "loader"></div>
-                <div id = "One_Result"></div>
-                <div id = "suggestions"></div>
-              </div>
-              <div id = "Multiple_Jobs" class = "box-3">
-                <h1>Results</h1>
-                <div class = "loader"></div>
-                <div id = "Count"></div><br>
-                <div id = "Multiple_Results"></div>
-              </div>
+        <div class = "container">
+          <div id = "options" class = "box-1">
+            <p>Manual entry or select by industry?</p>
+          </div>
+        </div>
+        <div class = "container">
+          <div id = "industries" class = "box-2">
+            <button id = "Ind-Button" data-industry = "medicine"><h1>Medicine</h1></button><br>
+            <button id = "Ind-Button" data-industry ="education"><h1>Education</h1></button><br>
+            <button id = "Ind-Button" data-industry ="engineering"><h1>Engineering</h1></button><br>
+            <button id = "Ind-Button" data-industry ="food"><h1>Food Services</h1></button><br>
+            <button id = "Ind-Button" data-industry ="retail"><h1>Retail</h1></button><br>
+          </div>
+        </div>
+          <div class = "container">
+            <div id = "menu" class = "box-1">
+              <h1>Search a Job</h1>
+              <form type = "submit">
+                <input id = "job" type = "text" placeholder="Job Title"><input type = "submit">
+              </form><br><br>
+              <div id = "Results"></div>
             </div>
+            <div id = "medicine" class = "box-2">
+              <h1>Medicine</h1>
+              <div id = "Count"></div><br>
+              <div id = "Medicine_Results"></div>
+            </div>
+            <div id = "One_Job" class = "box-2">
+              <h1>Results</h1>
+              <div class = "loader"></div>
+              <div id = "One_Result"></div>
+              <div id = "suggestions"></div>
+            </div>
+            <div id = "Multiple_Jobs" class = "box-3">
+              <h1>Results</h1>
+              <div class = "loader"></div>
+              <div id = "Count"></div><br>
+              <div id = "Multiple_Results"></div>
+            </div>
+          </div>
           
         </div>          
       </div>

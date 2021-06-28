@@ -24,8 +24,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-
-
+        
+        }
+        .industries{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: white;
+            border-radius: 20px;
         }
         .box-1{
             flex: 1;
@@ -93,7 +99,7 @@
         }
         .box-2{
             display: none;
-            flex: 2;
+            flex: 1;
             border: white;
             border-style: outset;
             border-radius: 30px;
