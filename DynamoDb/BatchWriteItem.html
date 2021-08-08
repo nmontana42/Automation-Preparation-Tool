@@ -1,0 +1,81 @@
+<!-- 
+  Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ 
+  This file is licensed under the Apache License, Version 2.0 (the "License").
+  You may not use this file except in compliance with the License. A copy of
+  the License is located at
+ 
+  http://aws.amazon.com/apache2.0/
+ 
+  This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+  CONDITIONS OF ANY KIND, either express or implied. See the License for the
+  specific language governing permissions and limitations under the License.
+-->
+<html>
+<head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+<script type="text/javascript">
+// Set the region where your identity pool exists (us-east-1, eu-west-1)
+
+    
+var dynamodb = new AWS.DynamoDB();
+    
+function processFile(evt) {
+    document.getElementById('textarea').innerHTML = "";
+    document.getElementById('textarea').innerHTML += "Importing Data into DynamoDB. Please wait..." + "\n";
+    var file = evt.target.files[0];
+    if (file) {
+        var r = new FileReader();
+        r.onload = function(e) {
+            var contents = e.target.result;
+            var Capstone_Data = JSON.parse(contents);
+    
+            Capstone_Data.forEach(function (Dataset) {
+                document.getElementById('textarea').innerHTML += "Processing: " + Dataset.Probability + " " + Dataset.Occupation + "\n";
+                var params = {
+                    RequestItems: {
+
+                        "JobRisk": [
+                            {
+                                PutRequest: {
+                                    Item: {
+                                        "SOC" : {S: Dataset.SOC },
+                                        "Occupation": {S: Dataset.Occupation},
+                                        "Probability": {N : Dataset.Probability },
+
+                                    }
+                                }
+                            }
+                        ] 
+                    }
+                }
+                dynamodb.batchWriteItem(params, function (err, data) {
+                    if (err) {
+                        document.getElementById('textarea').innerHTML += "Unable to add data: " + count + Dataset.Probability + "\n";
+                        document.getElementById('textarea').innerHTML += "Error JSON: " + JSON.stringify(err) + "\n";
+                    } else {
+                        document.getElementById('textarea').innerHTML += "batchWriteItem succeeded: " + Dataset.Occupation + "\n";
+                        textarea.scrollTop = textarea.scrollHeight;
+                    }
+                });
+            });
+    };
+        r.readAsText(file);
+    } else {
+        alert("Could not read data file");
+    }
+}
+    
+</script>
+</head>
+    
+<body>
+<input type="file" id="fileinput" accept='application/json'/>
+<br><br>
+<textarea readonly id= "textarea" style="width:400px; height:800px"></textarea>
+    
+<script>
+    document.getElementById('fileinput').addEventListener('change', processFile, false);
+</script>
+</body>
+</html>

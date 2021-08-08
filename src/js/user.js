@@ -41,7 +41,7 @@ class Resources{
         }
     }
 }
-
+  
 //Single page
 document.addEventListener('DOMContentLoaded', function() {
 
